@@ -26,19 +26,19 @@ public class IndexController {
 	}
 
 
-	@RequestMapping(value = "/{msg}", method = RequestMethod.GET)
+	@GetMapping(value = "/{msg}")
 	public Map<String,String> msg(@PathVariable String msg) {
 		Map<String, String> resultMsg = new HashMap<>();
 		resultMsg.put("key",msg);
 		return resultMsg;
 	}
 
-	@RequestMapping(value = "/movie/{movie}", method = RequestMethod.GET)
+	@GetMapping(value = "/movie/{movie}")
 	public Movie binderMsg(@PathVariable Movie movie) {
 		return movie;
 	}
 
-	@RequestMapping(value = "/customer/{age}",method = RequestMethod.GET)
+	@GetMapping(value = "/customer/{age}")
 	public Customer formatterMsg(@PathVariable("age") Customer customer){
 		return customer;
 	}

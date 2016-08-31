@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!--mybatis生成工具的帮助文档可以看：-->
+    <!--英文：http://www.mybatis.org/generator/usage/mysql.html-->
+    <!--中文：http://www.mybatis.tk/-->
+    <!--中文：http://mbg.cndocs.tk/-->
+
+
+    <!--添加你本地的驱动jar-->
+    <classPathEntry location="e:\mysql-connector-java-5.0.4-bin.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+
+        <!--设置编码格式-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--添加你的 JDBC 连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/movie" userId="root" password="mysqladmin"/>
+
+        <javaTypeResolver>
+            <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+         NUMERIC 类型解析为java.math.BigDecimal -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--要生成的 domain 模块位置-->
+        <javaModelGenerator targetPackage="jin.study.movie.model" targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--要生成的 Mapper.xml 文件位置-->
+        <!-- targetProject:mapper映射文件生成的位置
+          如果maven工程只是单独的一个工程，targetProject="src/main/java"
+          若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如：
+          targetProject="ecps-manager-mapper"，下同-->
+       <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+           <property name="enableSubPackages" value="false"/>
+       </sqlMapGenerator>
+
+       <!--要生成的 Mapper 接口类-->
+        <javaClientGenerator targetPackage="jin.study.movie.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+
+        <!--要根据哪张表生成，要在这里配置-->
+        <!--用百分号表示生成所有表,可以直接省去一个一个写 <table tableName="%" /> -->
+        <table tableName="admin" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+
+
+    </context>
+</generatorConfiguration>
