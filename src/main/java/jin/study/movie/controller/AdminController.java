@@ -31,7 +31,12 @@ public class AdminController {
 	@PostMapping(value = "/{id}")
 	public Admin editAdmin(@PathVariable Integer id, Admin admin){
 		admin.setaId(id);
-		adminService.edit(admin);
-		return admin;
+		return adminService.edit(admin);
+	}
+
+	@GetMapping(value = "/flush")
+	public Boolean flushAll(){
+		adminService.flushAll();
+		return true;
 	}
 }

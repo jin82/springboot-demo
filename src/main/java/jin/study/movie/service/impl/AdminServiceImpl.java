@@ -6,6 +6,7 @@ import jin.study.movie.service.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public boolean login(Integer id) {
-		Admin admin = adminMapper.selectByPrimaryKey(id);
+		Admin admin = info(id);
 		if (admin != null) {
 			return true;
 		}else{
@@ -38,7 +39,8 @@ public class AdminServiceImpl implements AdminService{
 
 	}
 
-	@Cacheable(value = "admin",keyGenerator = "wiselyKeyGenerator")
+	//@Cacheable(value = "admin",keyGenerator = "wiselyKeyGenerator")
+	@Cacheable(value = "admin",key="#id.toString()")
 	@Override
 	public Admin info(Integer id) {
 		Admin admin = adminMapper.selectByPrimaryKey(id);
@@ -46,11 +48,18 @@ public class AdminServiceImpl implements AdminService{
 		return admin;
 	}
 
-	@CacheEvict(value = "admin",allEntries = true)
+	@CachePut(value = "admin" ,key="#admin.aId.toString()")
 	@Override
 	public Admin edit(Admin admin) {
 		adminMapper.updateByPrimaryKeySelective(admin);
+		admin = adminMapper.selectByPrimaryKey(admin.getaId());
 		return admin;
+	}
+
+	@CacheEvict(value = "admin",allEntries = true)
+	@Override
+	public void flushAll(){
+
 	}
 
 }
