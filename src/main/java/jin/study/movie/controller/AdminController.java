@@ -1,5 +1,6 @@
 package jin.study.movie.controller;
 
+import jin.study.movie.model.Admin;
 import jin.study.movie.service.AdminService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +22,16 @@ public class AdminController {
 	AdminService adminService;
 
 	@GetMapping(value = "/{id}")
-	public String loginTest(@PathVariable Integer id) {
-		if(adminService.login(id)){
-			return "success";
-		}else{
-			return "NONONO";
-		}
+	public Admin loginTest(@PathVariable("id") Admin admin) {
+		return admin;
+	}
+
+
+
+	@PostMapping(value = "/{id}")
+	public Admin editAdmin(@PathVariable Integer id, Admin admin){
+		admin.setaId(id);
+		adminService.edit(admin);
+		return admin;
 	}
 }

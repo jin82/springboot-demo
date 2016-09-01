@@ -5,6 +5,8 @@ import jin.study.movie.model.Admin;
 import jin.study.movie.service.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,4 +37,20 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 	}
+
+	@Cacheable(value = "admin",keyGenerator = "wiselyKeyGenerator")
+	@Override
+	public Admin info(Integer id) {
+		Admin admin = adminMapper.selectByPrimaryKey(id);
+		logger.info("数据库查询");
+		return admin;
+	}
+
+	@CacheEvict(value = "admin",allEntries = true)
+	@Override
+	public Admin edit(Admin admin) {
+		adminMapper.updateByPrimaryKeySelective(admin);
+		return admin;
+	}
+
 }

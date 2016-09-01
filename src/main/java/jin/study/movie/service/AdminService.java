@@ -1,5 +1,7 @@
 package jin.study.movie.service;
 
+import jin.study.movie.model.Admin;
+
 /**
  * \*
  * \* User: jin82
@@ -10,4 +12,8 @@ package jin.study.movie.service;
  */
 public interface AdminService {
 	boolean login(Integer id);
+
+	Admin info(Integer id);
+
+	Admin edit(Admin admin);
 }
