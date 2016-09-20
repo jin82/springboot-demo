@@ -31,11 +31,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean login(Integer id) {
 		Admin admin = info(id);
-		if (admin != null) {
-			return true;
-		}else{
-			return false;
-		}
+		return admin != null;
 
 	}
 

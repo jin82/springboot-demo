@@ -4,8 +4,8 @@ import jin.study.movie.model.Admin;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
-@Mapper
 @Component
+@Mapper
 public interface AdminMapper {
     int deleteByPrimaryKey(Integer aId);
 

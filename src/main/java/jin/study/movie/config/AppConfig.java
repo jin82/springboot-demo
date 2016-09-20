@@ -117,4 +117,12 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 				configurableEmbeddedServletContainer.setSessionTimeout(1, TimeUnit.MINUTES)
 		;
 	}
+
+//	@Bean
+//	public InternalResourceViewResolver internalResourceViewResolver(){
+//		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+//		internalResourceViewResolver.setViewClass(JstlView.class);
+//		internalResourceViewResolver.setPrefix();
+//		internalResourceViewResolver.setSuffix();
+//	}
 }

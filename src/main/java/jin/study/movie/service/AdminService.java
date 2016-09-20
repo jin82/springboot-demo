@@ -1,7 +1,6 @@
 package jin.study.movie.service;
 
 import jin.study.movie.model.Admin;
-import org.springframework.cache.annotation.CacheEvict;
 
 /**
  * \*
@@ -18,6 +17,5 @@ public interface AdminService {
 
 	Admin edit(Admin admin);
 
-	@CacheEvict(value = "admin",allEntries = true)
 	void flushAll();
 }
